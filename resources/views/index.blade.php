@@ -1,11 +1,9 @@
 @extends('layout')
-
-@section('input')
-	<p> Test input</p>
-@endsection
-
+@extends('create')
 
 @section('content')
 	<h1>Test content</h1>
-
-@endsection
+		@foreach ($todos as $todo)
+			<li>{{$todo->name}}</li>
+		@endforeach
+ @endsection

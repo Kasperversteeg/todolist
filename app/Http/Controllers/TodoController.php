@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class TodoController extends Controller
 {
@@ -14,7 +16,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $todos = Todo::all();
+        return view('index', compact('todos'));
     }
 
     /**
@@ -35,7 +38,13 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = request()->validate([
+            'name' => ['required'],
+            'description' => ['required'],
+            'category' => ['required']
+        ]);
+        Todo::create($validated);
+        return redirect('/');
     }
 
     /**

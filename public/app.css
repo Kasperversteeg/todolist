@@ -1,0 +1,134 @@
+/*HTML elements*/
+/*font*/
+@font-face {
+  font-family: JosefinSans-Bold;
+  src: url('../fonts/JosefinSans/JosefinSans-Bold.ttf'); 
+}
+
+@font-face {
+  font-family: Oswald-Medium;
+  src: url('../fonts/oswald/Oswald-Medium.ttf'); 
+}
+
+body, html {
+	font-family: JosefinSans-Bold, sans-serif;
+}
+
+p {
+	font-family: JosefinSans-Bold;
+	font-size: 14px;
+	line-height: 1.7;
+	color: #666666;
+	margin: 0px;
+}
+/*endfont*/
+.float-right{
+	float:right;
+}
+ul, li {
+	list-style-type: none;
+}
+
+input.error, select.error {
+	border-color: red;
+}
+.add-todo {
+	width:95%;
+	margin: 0 auto;
+}
+
+.container {
+	margin: 0 auto;
+	width: 90%;
+
+}
+
+.input-container{
+
+	margin:0 auto;
+}
+
+.content-container{
+}
+
+.input {
+	font-size:20px;
+	height:50px;
+	background-color: #fff;
+	border:thin;
+	padding:0 20px;
+}
+.input-error{
+	margin:0 auto;
+	height:100%;
+	width:91.5%;
+	border:1px solid red;
+}
+.input-10{
+	width:8.7%;
+}
+.input-20{
+	width:15.25%;
+}
+.input-40 {
+	width: 40%;
+}
+
+.add-todo:after{
+	display: table;
+	content: "";
+	clear: both;
+}
+button.input{
+
+	border: 1px solid #e6e6e6;
+}
+
+button.input:hover {
+	background-color: #f0f0f0;
+
+}
+input::-webkit-input-placeholder { color: #999999;}
+input:-moz-placeholder { color: #999999;}
+input::-moz-placeholder { color: #999999;}
+input:-ms-input-placeholder { color: #999999;}
+
+select {
+    display: inline-block;
+    border: 1px solid #bbb9b9;
+    border-radius: 0px;
+    background: #ffffff;
+    color: #7b7b7b;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+select::-ms-expand {
+    display: none;
+}
+select:hover,
+select:focus {
+    color: #000000;
+    background: #f0f0f0;
+}
+select:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+form{
+	display: inline-block;
+	float:left;
+	width:100%;
+}
+div.todo-row{
+	width:100%;
+	height:50px;
+}
+.todo-row-right{
+	width:10%;
+	float:right;
+}
+.todo-row-left{
+	width:90%;
+	float:left;
+}	

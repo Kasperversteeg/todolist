@@ -2,12 +2,14 @@
 <html>
 <head>
 	<title>My todo list</title>
-</head>
+	<link rel="stylesheet" type="text/css" href="{{asset('app.css')}}">
+	</head>
 <body>
 	<div class="container">
-		<div class="input-container">
+		<div class="content-input">
 			@yield('input')
 		</div>
+		<hr>
 		<div class="content-container">
 			@yield('content')
 		</div>

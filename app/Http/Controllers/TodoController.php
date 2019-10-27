@@ -66,7 +66,6 @@ class TodoController extends Controller
      */
     public function edit(Todo $todo)
     {
-        //
     }
 
     /**
@@ -76,9 +75,11 @@ class TodoController extends Controller
      * @param  \App\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todo $todo)
+    public function update($id)
     {
-        //
+        $toUpdate = Todo::findOrFail($id);
+        $toUpdate->update(request(['name', 'description', 'category']));
+        return redirect('/');
     }
 
     /**
@@ -87,8 +88,10 @@ class TodoController extends Controller
      * @param  \App\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Todo $todo)
+    public function destroy($id)
     {
-        //
+        Todo::findOrFail($id)->delete();
+        // $todo->destroy();
+        return redirect('/');
     }
 }

@@ -10,5 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::delete('/{id}', 'todocontroller@destroy');
+Route::patch('/{id}', 'todocontroller@update');
 Route::resource('/', 'todocontroller');

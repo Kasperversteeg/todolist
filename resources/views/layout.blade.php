@@ -13,6 +13,9 @@
 		<div class="content-container">
 			@yield('content')
 		</div>
+		<div class="search">
+			@yield('search-content')
+		</div>
 	</div>
 
 </body>

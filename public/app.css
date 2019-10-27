@@ -50,7 +50,6 @@ input.error, select.error {
 
 .content-container{
 }
-
 .input {
 	font-size:20px;
 	height:50px;
@@ -68,7 +67,7 @@ input.error, select.error {
 	width:8.7%;
 }
 .input-20{
-	width:15.25%;
+	width:16%;
 }
 .input-40 {
 	width: 40%;
@@ -93,6 +92,12 @@ input:-moz-placeholder { color: #999999;}
 input::-moz-placeholder { color: #999999;}
 input:-ms-input-placeholder { color: #999999;}
 
+input.error::-webkit-input-placeholder{
+	color:red;
+}
+select.error{
+	color:red;
+}
 select {
     display: inline-block;
     border: 1px solid #bbb9b9;
@@ -132,3 +137,18 @@ div.todo-row{
 	width:90%;
 	float:left;
 }	
+select.input {
+  background-image:
+    linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    0px;
+  background-repeat: no-repeat;
+}

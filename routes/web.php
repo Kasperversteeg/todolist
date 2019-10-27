@@ -12,4 +12,7 @@
 */
 Route::delete('/{id}', 'todocontroller@destroy');
 Route::patch('/{id}', 'todocontroller@update');
-Route::resource('/', 'todocontroller');
+Route::get('/', 'todocontroller@index');
+Route::post('/', 'todocontroller@store');
+Route::get('/{id}','todocontroller@search');
+// Route::resource('/', 'todocontroller');

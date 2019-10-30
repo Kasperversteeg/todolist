@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Input;
 
 class TodoController extends Controller
 {
@@ -20,22 +20,30 @@ class TodoController extends Controller
         return view('index', compact('todos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function sort()
     {
-        //
+        $todos = Todo::all()->sortBy('name');
+        return view('index', compact('todos'));
+        // dd($todos);
+    }
+    public function search(Request $request)
+    {
+        $request = request('query');
+        $results = Todo::where('name','LIKE','%'.$request.'%')
+                        ->orwhere('description','LIKE','%'.$request.'%')
+                        ->orwhere('category','LIKE','%'.$request.'%')
+                                ->get();
+
+        if (count($results) > 0) {
+           return view('search', compact('results'));
+        } else {
+            return view('search')->withMessage('We found nothing, sorry!');
+        }
+
+        // $results = Todo::where('category', '=', $id)->get();
+        // return view('search', compact('results'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validated = request()->validate([
@@ -47,37 +55,9 @@ class TodoController extends Controller
         return redirect('/');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Todo  $todo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Todo $todo)
+    public function update(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Todo  $todo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Todo $todo)
-    {
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Todo  $todo
-     * @return \Illuminate\Http\Response
-     */
-    public function update($id)
-    {
-        $toUpdate = Todo::findOrFail($id);
+        $toUpdate = Todo::findOrFail($request->id);
         $toUpdate->update(request(['name', 'description', 'category']));
         return redirect('/');
     }
@@ -88,9 +68,9 @@ class TodoController extends Controller
      * @param  \App\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        Todo::findOrFail($id)->delete();
+        Todo::findOrFail($request->id)->delete();
         // $todo->destroy();
         return redirect('/');
     }

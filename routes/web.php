@@ -13,6 +13,7 @@
 Route::delete('/{id}', 'todocontroller@destroy');
 Route::patch('/{id}', 'todocontroller@update');
 Route::get('/', 'todocontroller@index');
+Route::get('/sort', 'todocontroller@sort');
 Route::post('/', 'todocontroller@store');
-Route::get('/{id}','todocontroller@search');
+Route::any('/search','todocontroller@search');
 // Route::resource('/', 'todocontroller');

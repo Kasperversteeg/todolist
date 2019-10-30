@@ -1,6 +1,14 @@
-
 @section('input')
-	<h1>Add Todo</h1>
+	<div class="float-left">
+		<h1>Add Todo</h1>
+	</div>
+	<div class="float-right">
+		<form action="/search" method="POST" role="search">
+		    {{ csrf_field() }}
+		    <input type="text" class="input search" name="query" placeholder="Search"> 
+		        <button type="submit" class="input">Go</button>
+		</form>
+	</div>
 	<div class="add-todo">
 		<form method="post" action="/">
 			@csrf
@@ -27,4 +35,5 @@
 			@endforeach
 		</div>
 	@endif
+	
 @endsection

@@ -4,7 +4,7 @@
 	</div>
 	<div class="float-right">
 		<form action="/search" method="POST" role="search">
-		    {{ csrf_field() }}
+		    @csrf
 		    <input type="text" class="input search" name="query" placeholder="Search"> 
 		        <button type="submit" class="input">Go</button>
 		</form>
@@ -14,15 +14,15 @@
 			@csrf
 			<input class="input input-20 {{ $errors->has('name') ? 'error' :''}} " type="text" name="name" placeholder="Todo name" value="{{old('name')}}">
 			<input class="input input-40 {{ $errors->has('description') ? 'error' :''}}" type="text" name="description" placeholder="Todo description" value="{{old('description')}}">
-				<select class="input input-20 {{ $errors->has('category') ? 'error' :''}}" name="category" placeholder="Todo category" value="{{old('category')}}">
+				<select class="input input-20 {{ $errors->has('category') ? 'error' :''}}" name="category_id" placeholder="Todo category" value="{{old('category')}}">
 					@if(!(old('category')))
 						<option value="" disabled selected>Select category</option>
 					@else
 						<option value="{{old('category')}}">{{ Str::ucfirst(old('category')) }}</option>
-					@endif
-					<option value="finance">Finance</option>
-					<option value="insurance">Insurance</option>
-					<option value="state">State</option>
+					@endif	
+					@foreach($categories as $category)
+						<option value="{{$category->id}}">{{$category->category}}</option>
+					@endforeach
 
 				</select>	
 			<button class="input input-20 float-right" type="submit">Add</button>

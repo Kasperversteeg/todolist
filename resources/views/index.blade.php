@@ -15,29 +15,43 @@
 		@else
 			@foreach ($todos as $todo)
 				<div class="todo-row">
-					<div class="todo-row-left">
-						<form method="post" action="/{{$todo->id}}">
-							@method('PATCH')
+					<form class="todo-row-check input" method="POST" action="/complete/{{ $todo->id }}">
+						@method('PATCH')
+						@csrf
+						<label>
+						  <input type="checkbox" name="completed" onchange="this.form.submit()" {{ $todo->completed ? 'checked' : ''}}>
+						</label>
+					</form>
+
+					<form class="todo-row-form" method="post" action="/{{$todo->id}}">
+						@method('PATCH')
+						@csrf
+
+						<input class="input" type="text" name="name" placeholder="Todo name" value="{{$todo->name}}">
+						
+						
+						<input class="input" type="text" name="description" placeholder="Todo description" value="{{$todo->description}}">
+						
+						<select class="input" name="category" placeholder="Todo category" value="">
+							
+							{{-- Vervangen voor eloquent versie --}}
+							<option value="{{$todo->category_id}}">{{ $categories->find($todo->category_id)->category  }}</option>
+							{{-- Vervangen voor eloquent versie --}}
+
+							@foreach($categories as $category)
+								<option>{{$category->category}}</option>
+							@endforeach
+						</select>
+
+						<button class="input" type="submit">Edit</button>
+					</form>
+
+					<form class="todo-row-delete" method="POST" action="/{{$todo->id}}">
+							@method('DELETE')
 							@csrf
-							<input class="input input-20" type="text" name="name" placeholder="Todo name" value="{{$todo->name}}">
-							<input class="input input-40" type="text" name="description" placeholder="Todo description" value="{{$todo->description}}">
-							<select class="input input-20" name="category" placeholder="Todo category" value="">
-								<option value="{{$todo->category}}">{{ Str::ucfirst($todo->category) }}</option>
-								<option value="finance">Finance</option>
-								<option value="insurance">Insurance</option>
-								<option value="state">State</option>
-							</select>
-							<span>{{$todo->done}}</span>
-							<button class="input input-10 float-right" type="submit">Edit</button>
-						</form>
-					</div>
-					<div class="todo-row-right">
-						<form class="left" method="POST" action="/{{$todo->id}}">
-								@method('DELETE')
-								@csrf
-								<button class="input delete" input="submit">Delete</button>
-						</form>
-					</div>
+							<button class="input delete" input="submit">Delete</button>
+					</form>
+				
 				</div>
 				<hr>
 			@endforeach

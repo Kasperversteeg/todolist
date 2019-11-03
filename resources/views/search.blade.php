@@ -17,10 +17,14 @@
 							<input class="input input-20" type="text" name="name" placeholder="Todo name" value="{{$result->name}}">
 							<input class="input input-40" type="text" name="description" placeholder="Todo description" value="{{$result->description}}">
 							<select class="input input-20" name="category" placeholder="Todo category" value="">
-								<option value="{{$result->category}}">{{ $result->category }}</option>
-								<option value="finance">Finance</option>
-								<option value="insurance">Insurance</option>
-								<option value="state">State</option>
+								
+								{{-- Vervangen voor eloquent versie --}}
+								<option value="{{$result->category_id}}">{{ $categories->find($result->category_id)->category  }}</option>
+								{{-- Vervangen voor eloquent versie --}}
+
+								@foreach($categories as $category)
+									<option>{{$category->category}}</option>
+								@endforeach
 							</select>
 							<button class="input input-10 float-right" type="submit">Edit</button>
 						</form>

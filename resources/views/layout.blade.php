@@ -6,17 +6,24 @@
 	</head>
 <body>
 	<div class="container">
-		<div class="content-input">
-			@yield('input')
+		<div class="nav-container">
+			<div class="nav">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/category">Categories</a></li>
+					<li class="login-button"><a href="/">Login</a></li>
+				</ul>
+			</div>
 		</div>
-		<hr>
 		<div class="content-container">
-			@yield('content')
-		</div>
-		<div class="search">
-			@yield('search-content')
+			<div class="create-todo">
+				@yield('input')
+			</div>
+			<hr>
+			<div class="index-content">
+				@yield('content')
+			</div>
 		</div>
 	</div>
-
 </body>
 </html>

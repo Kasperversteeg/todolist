@@ -1,3 +1,5 @@
+@extends('layout')
+@section('content')
 	<h1>Create Category</h1>
 	<form method="post" action="/createCategory">
 		@csrf
@@ -16,3 +18,4 @@
 			@endforeach
 		</ul>
 	@endif
+@endsection

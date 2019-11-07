@@ -1,17 +1,20 @@
 /*HTML elements*/
-/*font*/
+/*------ 01.Font ------ */
 @font-face {
   font-family: JosefinSans-Bold;
   src: url('../fonts/JosefinSans/JosefinSans-Bold.ttf'); 
 }
 
-@font-face {
-  font-family: Oswald-Medium;
-  src: url('../fonts/oswald/Oswald-Medium.ttf'); 
-}
+/*------ 00 .HTML  ------ */
 
 body, html {
 	font-family: JosefinSans-Bold, sans-serif;
+  margin:0px;
+}
+
+.container {
+  margin: 0 auto;
+  width: 90%;
 }
 
 p {
@@ -21,39 +24,47 @@ p {
 	color: #666666;
 	margin: 0px;
 }
-/*endfont*/
-.float-right{
-	float:right;
-}
-.float-left{
-	float:left;
-}
-.search{
-	margin-top:21px;
-}
-form. checkbox{
-  width: 20px;
-}
 ul, li {
-	list-style-type: none;
+  list-style-type: none;
 }
+/*endfont*/
 
+/*------ 00 .Nav ------ */
+.nav-container{
+  width:100%;
+  height: 100%;
+}
+.nav ul li {
+  display: inline-block;
+  float:-left;
+  border-right: 1px solid gray;
+  padding: 10px 10px;
+}
+.nav ul li:last-of-type{
+  border-right: 0px;
+}
+.nav ul li a {
+  text-decoration: none;
+}
+.nav ul {
+  margin-top:0px;
+}
+.login-button{
+float:right;
+}
+/*------ 00 .Create todo ------ */
+
+input, select{
+  outline: none;
+}
+input.input:hover{
+    background-color: #fff;
+}
 input.error, select.error {
 	border-color: red;
 }
 .add-todo form {
 	margin-top:10px;
-}
-.index-title{
-	height:80px;
-}
-.container {
-	margin: 0 auto;
-	width: 90%;
-}
-
-.input-container{
-	margin:0 auto;
 }
 
 .input {
@@ -63,75 +74,38 @@ input.error, select.error {
 	border:thin;
 	padding:0 20px;
 }
-.input-error{
-	margin:0 auto;
-	height:100%;
-	width:91.5%;
-	border:1px solid red;
+form.add-todo-form{
+  display: grid;
+  border: 1px solid firebrick;
+  width:100%;
+  grid-template-columns: 1fr 3fr 1fr 200px ;
+  grid-template-areas: 
+  "name description category edit"
+  "name-error descr-error cat-error ."
 }
-.input-10{
-	width:8.7%;
+div.error{
+  font-size: 0.9em;
+  color: firebrick;
+  padding-left: 20px;
 }
-.input-20{
-	width:16%;
+div.name-error{
+  grid-area: name-error;
 }
-.input-40 {
-	width: 40%;
+div.descr-error{
+  grid-area: descr-error;
 }
-
-.add-todo:after{
-	display: table;
-	content: "";
-	clear: both;
-}
-
-button.input{
-	border: 1px solid #e6e6e6;
+div.cat-error{
+  grid-area: cat-error;
 }
 
-button.input:hover {
-	background-color: #f0f0f0;
+/*------ 00 .Todo row ------ */
+.index-title{
+  clear:both;
+  padding-bottom: 25px;
 }
-input::-webkit-input-placeholder { color: #999999;}
-input:-moz-placeholder { color: #999999;}
-input::-moz-placeholder { color: #999999;}
-input:-ms-input-placeholder { color: #999999;}
-
-input.error::-webkit-input-placeholder{
-	color:red;
+.search{
+  margin-top:21px;
 }
-select.error{
-	color:red;
-}
-select {
-    display: inline-block;
-    border: 1px solid #bbb9b9;
-    border-radius: 0px;
-    background: #ffffff;
-    color: #7b7b7b;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-select::-ms-expand {
-    display: none;
-}
-select:hover,
-select:focus {
-    color: #000000;
-    background: #f0f0f0;
-}
-select:disabled {
-    opacity: 0.5;
-    pointer-events: none;
-}
-form{
-	display: inline-block;
-	float:left;
-	width:100%;
-}
-
-/*Todo row grid*/
 div.todo-row{
   width:100%;
   display: grid;
@@ -153,20 +127,20 @@ form.todo-row-form {
   grid-template-areas:
   "name description category edit";
 }
-/*inline grid */
-form.todo-name{
+form input.todo-name{
   grid-area: name;
 }
-form.todo-descr{
+form input.todo-descr{
   grid-area: description;
 }
-form.todo-cat{
+form input.todo-cat{
   grid-area: category;
 }
-form.todo-edit{
+form input.todo-edit{
   grid-area: edit;
+  width: 100%;
 }
-
+/*------ 00 .Form styling ------ */
 
 select.input {
   background-image:
@@ -184,19 +158,32 @@ select.input {
   background-repeat: no-repeat;
 }
 
-
-/* Customize the label (the container) */
-.container {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+button.input{
+  border: 1px solid #e6e6e6;
 }
 
+button.input:hover {
+  background-color: #f0f0f0;
+}
+input::-webkit-input-placeholder { color: #999999;}
+input:-moz-placeholder { color: #999999;}
+input::-moz-placeholder { color: #999999;}
+input:-ms-input-placeholder { color: #999999;}
 
+input.error::-webkit-input-placeholder{
+  color:red;
+}
+select.error{
+  color:red;
+}
+select {
+    display: inline-block;
+    border: 1px solid #bbb9b9;
+    border-radius: 0px;
+    background: #ffffff;
+    color: #7b7b7b;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+ 

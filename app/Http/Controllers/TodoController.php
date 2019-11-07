@@ -46,14 +46,14 @@ class TodoController extends Controller
             'description' => ['required'],
             'category_id' => ['required']
         ]);
-
         Todo::create($validated);
+
         return redirect('/');
     }
 
     public function update(Todo $todo)
     {
-       $todo->update(request(['name', 'description', 'category']));
+       $todo->update(request(['name', 'description', 'category_id']));
         return redirect('/');
     }
 

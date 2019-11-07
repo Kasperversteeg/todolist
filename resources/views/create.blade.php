@@ -1,39 +1,33 @@
 @section('input')
-	<div class="float-left">
-		<h1>Add Todo</h1>
-	</div>
-	<div class="float-right">
-		<form action="/search" method="POST" role="search">
-		    @csrf
-		    <input type="text" class="input search" name="query" placeholder="Search"> 
-		        <button type="submit" class="input">Go</button>
-		</form>
-	</div>
+	<h1>Add Todo</h1>
+	
 	<div class="add-todo">
-		<form method="post" action="/">
+		<form class="add-todo-form" method="post" action="/">
 			@csrf
-			<input class="input input-20 {{ $errors->has('name') ? 'error' :''}} " type="text" name="name" placeholder="Todo name" value="{{old('name')}}">
-			<input class="input input-40 {{ $errors->has('description') ? 'error' :''}}" type="text" name="description" placeholder="Todo description" value="{{old('description')}}">
-				<select class="input input-20 {{ $errors->has('category') ? 'error' :''}}" name="category_id" placeholder="Todo category" value="{{old('category')}}">
-					@if(!(old('category')))
-						<option value="" disabled selected>Select category</option>
-					@else
-						<option value="{{old('category')}}">{{ Str::ucfirst(old('category')) }}</option>
-					@endif	
-					@foreach($categories as $category)
-						<option value="{{$category->id}}">{{$category->category}}</option>
-					@endforeach
-
-				</select>	
-			<button class="input input-20 float-right" type="submit">Add</button>
+			<input class="input todo-name {{-- {{ $errors->has('name') ? 'error' :''}} --}} " type="text" name="name" placeholder="Todo name" value="{{old('name')}}">
+			@error('name')
+				<div class="name-error error">Name is not valid</div>
+			@enderror
+			<input class="input todo-descr {{ $errors->has('description') ? 'error' :''}}" type="text" name="description" placeholder="Todo description" value="{{old('description')}}">
+			@error('description')
+				<div class="descr-error error">Description is not valid</div>
+			@enderror
+			<select class="input todo-cat{{ $errors->has('category_id') ? 'error' :''}}" name="category_id" placeholder="Todo category" value="{{old('category_id')}}">
+				@if(!(old('category_id')))
+					<option value="" disabled selected>Select category</option>
+				@else
+					<option value="{{old('category_id')}}">{{ Str::ucfirst( $categories->find(old('category_id'))->category ) }}</option>
+				@endif	
+				@foreach($categories as $category)
+					<option value="{{$category->id}}">{{$category->category}}</option>
+				@endforeach
+			</select>
+			@error('category_id')
+				<div class="cat-error error">No category selected</div>
+			@enderror	
+			<button class="input todo-edit" type="submit">Add</button>
 		</form>
 	</div>
-	@if ($errors->any())
-		<div class="input input-error">
-			@foreach($errors->all() as $error)
-				<li>{{ $error }}</li>
-			@endforeach
-		</div>
-	@endif
+
 	
 @endsection

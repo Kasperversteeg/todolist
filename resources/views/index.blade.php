@@ -3,12 +3,9 @@
 
 @section('content')
 	<div class="index-title">
-		<div class="float-left">
 			<h1>Todo List</h1>
-		</div>
-		<div class="float-right">
 			<a href="/sort">Sort by name</a>
-		</div>
+
 	</div>
 		@if(count($todos) === 0)
 			<h3>No todo's, great job!</h3>
@@ -27,23 +24,23 @@
 						@method('PATCH')
 						@csrf
 
-						<input class="input" type="text" name="name" placeholder="Todo name" value="{{$todo->name}}">
+						<input class="input todo-name" type="text" name="name" placeholder="Todo name" value="{{$todo->name}}">
 						
 						
-						<input class="input" type="text" name="description" placeholder="Todo description" value="{{$todo->description}}">
+						<input class="input todo-descr" type="text" name="description" placeholder="Todo description" value="{{$todo->description}}">
 						
-						<select class="input" name="category" placeholder="Todo category" value="">
+						<select class="input todo-cat" name="category_id" placeholder="Todo category" value="">
 							
 							{{-- Vervangen voor eloquent versie --}}
 							<option value="{{$todo->category_id}}">{{ $categories->find($todo->category_id)->category  }}</option>
 							{{-- Vervangen voor eloquent versie --}}
 
 							@foreach($categories as $category)
-								<option>{{$category->category}}</option>
+								<option value="{{$category->id}}" >{{$category->category}}</option>
 							@endforeach
 						</select>
 
-						<button class="input" type="submit">Edit</button>
+						<button class="input todo-edit" type="submit">Edit</button>
 					</form>
 
 					<form class="todo-row-delete" method="POST" action="/{{$todo->id}}">
